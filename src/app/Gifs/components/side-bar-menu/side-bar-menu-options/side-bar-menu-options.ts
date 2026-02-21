@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { INavigationOption } from '../../interfaces/navigation-option.interface';
+import { INavigationOption } from '../../../interfaces/navigation-option.interface';
 import { SideBarMenuOption } from '../side-bar-menu-option/side-bar-menu-option';
 
 @Component({
