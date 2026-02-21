@@ -1,9 +1,9 @@
 import { Component, input } from '@angular/core';
-import { RouterLinkActive, RouterLinkWithHref } from "@angular/router";
+import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
   selector: 'side-bar-menu-option',
-  imports: [RouterLinkActive, RouterLinkWithHref],
+  imports: [RouterLinkActive, RouterLink],
   templateUrl: './side-bar-menu-option.html',
 })
 export class SideBarMenuOption {
