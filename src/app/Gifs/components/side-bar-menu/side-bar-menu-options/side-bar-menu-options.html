@@ -4,6 +4,6 @@
   }
 
   @for (hOption of historialOptions(); track $index) {
-     <side-bar-menu-option [name]="hOption" link="search" [description]="hOption" svg="" />
+     <side-bar-menu-option [name]="hOption" [link]="['history', hOption]" [description]="hOption" svg="" />
   }
 </div>

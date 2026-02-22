@@ -7,7 +7,7 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
   templateUrl: './side-bar-menu-option.html',
 })
 export class SideBarMenuOption {
-  link = input.required<string>();
+  link = input.required<string | string[]>();
   name = input.required<string>();
   description = input.required<string>();
   svg = input.required<string>();
