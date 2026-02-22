@@ -11,6 +11,9 @@ export class Gifs {
   trendingGifs = signal<IGif[]>([]);
   trendingGifsLoading = signal(true);
 
+  searchedGifs = signal<IGif[]>([]);
+  searchedGifsLoading = signal(true);
+
   constructor() {
     this.loadTrendingGifs();
   }
@@ -35,6 +38,30 @@ export class Gifs {
       this.trendingGifs.set(gifs);
       this.trendingGifsLoading.set(false);
       console.log(this.trendingGifs())
+    })
+  }
+
+  searchGifs(query: string) {
+    this.http.get<IGiphyResponse>('https://api.giphy.com/v1/gifs/search', {
+      params: {
+        api_key: 'J8iuleh1ka5NCkp8tEgwpNnHsy5ne7zy',
+        limit: 25,
+        offset: 0,
+        rating: 'g',
+        bundle: 'messaging_non_clips',
+        q: query,
+      }
+    }).subscribe(data => {
+      const gifs: IGif[] = data.data.map((item) => {
+        return {
+          id: item.id,
+          title: item.title,
+          url: item.images.original.url,
+        }
+      });
+      this.searchedGifs.set(gifs);
+      this.searchedGifsLoading.set(false);
+      console.log(this.searchedGifs())
     })
   }
 }
