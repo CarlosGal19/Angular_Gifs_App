@@ -1,6 +1,6 @@
 import { IGif } from './../interfaces/gif.interface';
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { IGiphyResponse } from '../interfaces/giphy-response.interface';
 import { map, tap } from 'rxjs';
 
@@ -11,6 +11,9 @@ export class Gifs {
   private readonly http = inject(HttpClient);
   trendingGifs = signal<IGif[]>([]);
   trendingGifsLoading = signal(true);
+
+  historial = signal<Record<string, IGif[]>>({});
+  historialKeys = computed(() => Object.keys(this.historial()))
 
   // searchedGifs = signal<IGif[]>([]);
   // searchedGifsLoading = signal(true);
@@ -64,6 +67,12 @@ export class Gifs {
           });
 
           return gifs;
+        }),
+        tap((data) => {
+          this.historial.update(current => ({
+            ...current,
+            [query.toLocaleLowerCase()]: data
+          }))
         })
       )
     // .subscribe(data => {

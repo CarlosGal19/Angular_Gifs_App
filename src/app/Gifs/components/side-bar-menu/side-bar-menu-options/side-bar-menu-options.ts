@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { INavigationOption } from '../../../interfaces/navigation-option.interface';
 import { SideBarMenuOption } from '../side-bar-menu-option/side-bar-menu-option';
+import { Gifs } from '../../../services/gifs.service';
 
 @Component({
   selector: 'side-bar-menu-options',
@@ -8,6 +9,8 @@ import { SideBarMenuOption } from '../side-bar-menu-option/side-bar-menu-option'
   templateUrl: './side-bar-menu-options.html',
 })
 export class SideBarMenuOptions {
+  gifService = inject(Gifs);
+  historialOptions = this.gifService.historialKeys;
   sideBarOptions = signal<INavigationOption[]>([
     {
       name: 'Trending',
