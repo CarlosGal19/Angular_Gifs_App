@@ -11,11 +11,13 @@ import { IGif } from '../../interfaces/gif.interface';
 })
 export default class SearchPage {
   gifService = inject(Gifs);
-  gifs = this.gifService.searchedGifs
+  gifs = signal<IGif[]>([])
 
   onSearch(input: string) {
     if (!input) return;
-    this.gifService.searchGifs(input);
+    this.gifService.searchGifs(input).subscribe((data) => {
+      this.gifs.set(data);
+    })
   }
 
 }
