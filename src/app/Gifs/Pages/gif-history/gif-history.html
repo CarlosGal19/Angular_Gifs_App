@@ -1,5 +1,6 @@
-<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-  @for (gif of gifs(); track gif.id) {
-    <git-list-item [gif]="gif" />
-  }
-</div>
+<h3 class="text-2xl font-bold mt-4">Showing: {{ query() }}</h3>
+<hr />
+
+<section class="py-5">
+  <gif-list [gifs]="gifs()" />
+</section>

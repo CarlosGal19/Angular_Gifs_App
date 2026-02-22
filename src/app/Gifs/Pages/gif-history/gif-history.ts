@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs';
 import { IGif } from '../../interfaces/gif.interface';
 import { Gifs } from '../../services/gifs.service';
-import { GitListItem } from "../../components/gif-list/git-list-item/git-list-item";
+import { GifList } from "../../components/gif-list/gif-list";
 
 @Component({
   selector: 'app-gif-history',
-  imports: [GitListItem],
+  imports: [GifList],
   templateUrl: './gif-history.html',
 })
 export default class GifHistory {
