@@ -1,5 +1,5 @@
 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-  @for (image of images; track image.imgUrl) {
-    <git-list-item [image]="image" />
+  @for (gif of gifs(); track gif.id) {
+    <git-list-item [gif]="gif" />
   }
 </div>

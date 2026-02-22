@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { IGifListItem } from '../../../interfaces/gif-list-item.interface';
+import { IGif } from '../../../interfaces/gif.interface';
 
 @Component({
   selector: 'git-list-item',
@@ -7,5 +8,5 @@ import { IGifListItem } from '../../../interfaces/gif-list-item.interface';
   templateUrl: './git-list-item.html',
 })
 export class GitListItem {
-  image = input.required<IGifListItem>();
+  gif = input.required<IGif>();
 }
