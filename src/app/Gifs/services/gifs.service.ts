@@ -1,8 +1,14 @@
 import { IGif } from './../interfaces/gif.interface';
 import { HttpClient } from '@angular/common/http';
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { IGiphyResponse } from '../interfaces/giphy-response.interface';
 import { map, tap } from 'rxjs';
+
+const loadHistorial = () => {
+  const historial = JSON.parse(localStorage.getItem('gifsHistory') ?? '{}') as Record<string, IGif[]>
+
+  return historial;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +18,7 @@ export class Gifs {
   trendingGifs = signal<IGif[]>([]);
   trendingGifsLoading = signal(true);
 
-  historial = signal<Record<string, IGif[]>>({});
+  historial = signal<Record<string, IGif[]>>(loadHistorial());
   historialKeys = computed(() => Object.keys(this.historial()))
 
   // searchedGifs = signal<IGif[]>([]);
@@ -88,4 +94,12 @@ export class Gifs {
     // console.log(this.searchedGifs())
     // })
   }
+
+  getHistoryGifs(key: string) {
+    return this.historial()[key] ?? []
+  }
+
+  saveToLocalStorage = effect(() => {
+    localStorage.setItem('gifsHistory', JSON.stringify(this.historial()))
+  })
 }

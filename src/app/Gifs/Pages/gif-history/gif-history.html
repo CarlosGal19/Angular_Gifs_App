@@ -1,1 +1,5 @@
-<p>gif-history works!</p>,
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+  @for (gif of gifs(); track gif.id) {
+    <git-list-item [gif]="gif" />
+  }
+</div>
