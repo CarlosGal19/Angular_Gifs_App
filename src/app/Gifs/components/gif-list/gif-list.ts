@@ -1,7 +1,8 @@
-import { Component, ElementRef, HostListener, input, viewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, input, viewChild } from '@angular/core';
 import { IGifListItem } from '../../interfaces/gif-list-item.interface';
 import { GitListItem } from "./git-list-item/git-list-item";
 import { IGif } from '../../interfaces/gif.interface';
+import { Gifs } from '../../services/gifs.service';
 
 @Component({
   selector: 'gif-list',
@@ -9,16 +10,6 @@ import { IGif } from '../../interfaces/gif.interface';
   templateUrl: './gif-list.html',
 })
 export class GifList {
+  gifService = inject(Gifs);
   gifs = input.required<IGif[]>();
-
-  scrollDivRef = viewChild<ElementRef>('groupDiv')
-
-  @HostListener('scroll', ['$event'])
-  onScroll(event: Event) {
-    // const scrollOffset = (event.target as HTMLElement).scrollTop;
-    // console.log('Scroll position:', scrollOffset);
-    const scrollDiv = this.scrollDivRef()?.nativeElement;
-
-    console.log(scrollDiv);
-  }
 }

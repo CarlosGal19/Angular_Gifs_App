@@ -1,4 +1,4 @@
-<div class="grid grid-cols-2 md:grid-cols-3 gap-4 h-screen overflow-y-auto" (scroll)="onScroll($event)" #groupDiv>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4 h-screen overflow-y-auto">
   @for (gif of gifs(); track gif.id) {
   <git-list-item [gif]="gif" />
   }
