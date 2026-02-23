@@ -57,7 +57,7 @@ export class Gifs {
       });
       this.trendingGifs.set(gifs);
       this.trendingGifsLoading.set(false);
-      console.log(this.trendingGifs())
+      // console.log(this.trendingGifs())
     })
   }
 
