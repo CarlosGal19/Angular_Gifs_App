@@ -50,7 +50,7 @@ export class Gifs {
       params: {
         api_key: 'J8iuleh1ka5NCkp8tEgwpNnHsy5ne7zy',
         limit: 25,
-        offset: this.trendingPage() * 0,
+        offset: this.trendingPage() * 20,
         rating: 'g',
         bundle: 'messaging_non_clips'
       }
@@ -63,8 +63,8 @@ export class Gifs {
         }
       });
       this.trendingGifs.update(currentGifs => [...currentGifs, ...gifs]);
+      this.trendingPage.update(current => current + 1);
       this.trendingGifsLoading.set(false);
-      this.trendingPage.update(current => current++);
       // console.log(this.trendingGifs())
     })
   }
