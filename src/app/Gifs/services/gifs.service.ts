@@ -10,6 +10,12 @@ const loadHistorial = () => {
   return historial;
 }
 
+const loadTrending = () => {
+  const trendingGifs = JSON.parse(localStorage.getItem('gifsTrending') ?? '[]') as IGif[]
+
+  return trendingGifs;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -37,6 +43,8 @@ export class Gifs {
   // searchedGifsLoading = signal(true);
 
   constructor() {
+    this.trendingGifs.set(loadTrending())
+    if (this.trendingGifs().length > 0) return
     this.loadTrendingGifs();
   }
 
@@ -119,5 +127,9 @@ export class Gifs {
 
   saveToLocalStorage = effect(() => {
     localStorage.setItem('gifsHistory', JSON.stringify(this.historial()))
+  })
+
+  saveTrendingGifsLocalStorage = effect(() => {
+    localStorage.setItem('gifsTrending', JSON.stringify(this.trendingGifs()));
   })
 }
