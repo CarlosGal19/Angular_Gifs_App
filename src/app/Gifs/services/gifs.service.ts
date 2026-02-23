@@ -18,6 +18,16 @@ export class Gifs {
   trendingGifs = signal<IGif[]>([]);
   trendingGifsLoading = signal(true);
 
+  trendingGifsGroup = computed(() => {
+    const groups: IGif[][] = [];
+
+    for (let i = 0; i < this.trendingGifs().length; i += 3) {
+      groups.push(this.trendingGifs().slice(i, i + 3))
+    }
+
+    return groups;
+  })
+
   historial = signal<Record<string, IGif[]>>(loadHistorial());
   historialKeys = computed(() => Object.keys(this.historial()))
 

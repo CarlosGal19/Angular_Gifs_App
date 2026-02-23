@@ -4,7 +4,7 @@ import { Gifs } from '../../services/gifs.service';
 
 @Component({
   selector: 'app-trending-page',
-  imports: [GifList],
+  // imports: [GifList],
   templateUrl: './trending-page.html',
 })
 export default class TrendingPage {

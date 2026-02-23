@@ -1,3 +1,12 @@
-<div>
-  <gif-list [gifs]="gifService.trendingGifs()" />
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-5">
+  @for (listArray of gifService.trendingGifsGroup(); track $index) {
+  <div class="grid gap-4">
+    @for (gif of listArray; track $index) {
+      <div>
+        <img class="h-full w-full rounded-base object-cover" [src]="gif.url"
+          [alt]="gif.title">
+      </div>
+      }
+    </div>
+  }
 </div>
